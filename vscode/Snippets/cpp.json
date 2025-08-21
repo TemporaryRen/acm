@@ -1,0 +1,119 @@
+{
+	"acm contest template":{
+		"prefix": ["acmz"],
+		"body": [
+			"#include <bits/stdc++.h>",
+			"using namespace std;",
+			"#define ll long long",
+			"#define forn(i, l, r) for(int i=l;i<r;i++)",
+            "#define for0(i, r, l) for(int i=r;i>l;i--)",
+			"#define all(a) a.begin(),a.end()",
+			"#define forn(i, l, r) for(int i=l;i<r;i++)\n",
+			"void solve(){",
+			"}",
+			"\n",
+			"int main() {",
+			"\tios_base::sync_with_stdio(false);",
+			"\tcin.tie(nullptr);",
+			"\tcout.tie(nullptr);",
+			"\tint tc = 1;",
+			"\tcin >> tc;",
+			"\tfor (int t = 1; t <= tc; t++) {",
+			"\t\tsolve();",
+			"\t}",
+			"\treturn 0;",
+			"}"
+	],
+		"description": "acm contest template"
+	},
+	"string prefix array function":{
+		"prefix": ["pi_fun"],
+		"body": [
+			"vector<int> pi_fun(string s) {",
+			"\tint n = s.size();",
+			"\tvector pi(n,0);",
+			"\tfor (int i = 1; i < n; i++) {",
+			"\t\tint j = pi[i - 1];",
+			"\t\twhile (j > 0 && s[i] != s[j])j = pi[j - 1];",
+			"\t\tif (s[i] == s[j]) ++j;",
+			"\t\tpi[i] = j;",
+			"\t}",
+			"\treturn pi;",
+			"}"
+
+		],
+		"description": "string prefix array function"
+	},
+	"kmp search":{
+		"prefix": ["kmp_fun"],
+		"body": [
+			"vector<int> pi_fun(string s) {",
+			"\tint n = s.size();",
+			"\tvector pi(n,0);",
+			"\tfor (int i = 1; i < n; i++) {",
+			"\t\tint j = pi[i - 1];",
+			"\t\twhile (j > 0 && s[i] != s[j])j = pi[j - 1];",
+			"\t\tif (s[i] == s[j]) ++j;",
+			"\t\tpi[i] = j;",
+			"\t}",
+			"\treturn pi;",
+			"}",
+			"\n",
+			"void kmp(string s,string t){",
+			"\tauto pi = pi_fun(t);",
+			"\tint n = s.size();",
+			"\tint m = t.size();",
+			"\tint j = 0;",
+			"\tfor(int i=0;i<n;i++){",
+			"\t\tchar c = s[i];",
+			"\t\twhile(j>0 && c!=t[j]) j = pi[j-1];",
+			"\t\tj += (c==t[j]);",
+			"\t\tif(j==m){",
+			"\t\t\t//match success and do something",
+			"\t\t}",
+			"\t}",
+			"}"
+		],
+		"description": "kmp function"
+	},
+	"Z function":{
+		"prefix": ["Z_fun"],
+		"body":[
+			"vector<int> Z_fun(string s){",
+			"\tint n = s.size();",
+			"\tvector Z(n,0);",
+			"\tfor(int j=1,l=0,r=0;j<n;j++){",
+			"\t\tZ[j] = max(0,min(r-j+1,Z[j-l]));",
+			"\t\twhile(j+Z[j]<n&&s[j+Z[j]]) ++Z[j];",
+			"\t\tif(j+Z[j]-1 > r){",
+			"\t\t\tr = j+Z[j]-1;",
+			"\t\t\tl = j;",
+			"\t\t}",
+			"\t}",
+			"\treturn Z;",
+			"}"
+		],
+		"description": "Z function"
+
+	},
+	"manacher":{
+		"prefix": ["manacher"],
+		"body":[
+			"vector<int> manacher(const string& s){",
+			"\tint n = s.size();",
+			"\tvector ret(n,0);",
+			"\tint l = 0, r = 0;",
+			"\tfor(int i=1;i<n;i++){",
+			"\t\tret[i] = max(0,min(ret[max(0,2*l-i)],r-i));",
+			"\t\twhile(i+ret[i]+1<n&&i-ret[i]-1>=0&&s[i+ret[i]+1]==s[i-ret[i]-1]) ++ret[i];",
+			"\t\tif(i+ret[i]>r){",
+			"\t\t\tl = i;",
+			"\t\t\tr = i+ret[i];",
+			"\t\t}",
+			"\t}",
+			"\treturn ret;",
+			"}"
+		],
+		"description": "manacher function"
+	}
+}
