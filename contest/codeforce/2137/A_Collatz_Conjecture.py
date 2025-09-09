@@ -19,6 +19,7 @@ def LGMI():
 if packages:
     from io import BytesIO, IOBase
     import random
+    import math
     import os
     import bisect
     import typing
@@ -30,20 +31,15 @@ if packages:
     from operator import add, iand, ior, itemgetter, mul, xor
     from string import ascii_lowercase, ascii_uppercase, ascii_letters
     from typing import *
+RANDOM = random.randrange(2**62)
+def make_key(x):
+    return hash(x) ^ RANDOM
 
 t = II()
 
 def slove():
-    n = II()
-    s = I()
-    f = I()
-    c1 = c2 = 0
-    for i in range(n):
-        if s[i] == '1' and f[i] == '0':
-            c1 += 1
-        if s[i] == '0' and f[i] == '1':
-            c2 += 1
-    print(max(c1,c2))
+    k,x = MII()
+    print(x << k)
 
 for _ in range(t):
     slove()
